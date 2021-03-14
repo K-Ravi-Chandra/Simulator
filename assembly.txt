@@ -1,0 +1,39 @@
+.data
+.word  1, -3, 5, 7, 11, -223, 21, 45, 9, ;  
+.text 
+.globl main 
+main: 
+
+BubbleSort: 
+
+li $t0, 0x10010000       
+li $t1, 0      
+li $t2, 0     
+li $r1, 8 
+
+OuterLoop:  
+    beq $t1, $r1, exit      
+    li  $t0, 0x10010000 
+    li  $t2, 0   
+
+    InnerLoop: 
+
+        beq $t2, $r1, exitInnerLoop   
+        lw  $t8, 0($t0)         	
+        lw  $t9, 4($t0)         	
+
+        ble $t8, $t9, GoAhead       
+        sw  $t9, 0($t0)         	
+        sw  $t8, 4($t0) 
+
+        GoAhead: 
+            addi $t2, $t2, 1                      
+            addi $t0, $t0, 4   
+
+        j InnerLoop 
+
+    exitInnerLoop: 
+        addi $t1, $t1, 1  
+        j OuterLoop 
+        
+exit: 
