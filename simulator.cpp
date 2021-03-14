@@ -215,15 +215,12 @@ bool PerformLI (char a, int x,int y)
     else if (a == 'r')
         R[10+x] = p;
 
-    base_address = p;
-
     return true;
 
 }
 
 bool PerformLW (char a,char b, int x,int y,int z)
 {
-    
     int q,r;
 
     if (b == 't')
@@ -231,13 +228,13 @@ bool PerformLW (char a,char b, int x,int y,int z)
     else if (b == 'r')
         q = R[10+z];
 
+    
     // Now q will be having address in decimal value
     q = q + y;            // Adding offset
     q = q - base_address; // Removing base address
-    q = q/4 ;             // To get index of Memory array 
-    
-    int i = y/4;
-    r = Mem[i];     // If we use Mem[i] code is not working /No output
+    q = q/4 ;             // To get index of Memory array
+
+    r = Mem[q];     // If we use Mem[q] code is not working /No output
     
    
     //      int *p = &(Mem[1]);
@@ -490,6 +487,8 @@ bool li_Check ( string sentence, string word )
                 int int_temp = int_temp = Hexa_To_Dec_Converter( hex );
                 
                 y = int_temp;   // storing integer value of 3rd register
+
+                base_address = y; // Assigning given address to  base_address
 
                 PerformLI (a,x,y);
 
