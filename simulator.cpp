@@ -1173,3 +1173,32 @@ bne $r3, $r4, loop
    addi $r9, $r9, 10 
 
 */
+
+
+/* Test file to check BUBBE SORT
+
+li $t0, 0x10010000       
+li $t1, 0      
+li $t2, 0     
+li $r1, 13 
+loop:  
+    beq $t1, $r1, exit      
+    li  $t0, 0x10010000 
+    li  $t2, 0   
+    forLoop: 
+        beq $t2, $r1, exitForLoop   
+        lw  $t8, 0($t0)         	
+        lw  $t9, 4($t0)         	
+        ble $t8, $t9, update       
+        sw  $t9, 0($t0)         	
+        sw  $t8, 4($t0)
+        update: 
+        addi $t2, $t2, 1                      
+        addi $t0, $t0, 4            
+        j forLoop 
+    exitForLoop: 
+        addi $t1, $t1, 1  
+        j loop 
+exit:   
+
+*/
