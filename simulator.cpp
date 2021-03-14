@@ -223,6 +223,7 @@ bool PerformLI (char a, int x,int y)
 
 bool PerformLW (char a,char b, int x,int y,int z)
 {
+    
     int q,r;
 
     if (b == 't')
@@ -235,8 +236,10 @@ bool PerformLW (char a,char b, int x,int y,int z)
     q = q - base_address; // Removing base address
     q = q/4 ;             // To get index of Memory array 
     
-    r = Mem[q];
-
+    int i = y/4;
+    r = Mem[i];     // If we use Mem[i] code is not working /No output
+    
+   
     //      int *p = &(Mem[1]);
     //      cout << *(p);         so , p = 0x40d0a4 , *p = 2
     
@@ -758,6 +761,46 @@ string bne_Check  ( string sentence, string word )
     } 
 }
 
+string beq_Check  ( string sentence, string word )
+{
+    int x,y;
+    char a,b;
+
+    stringstream s(sentence); 
+    string temp; 
+    string wrong = "fault";
+  
+    while (s >> temp) 
+    {  
+        if (temp.compare(word) == 0) 
+        {  
+            s >> temp;  // temp[0] = '$'
+            int p=1;           
+              
+            a = temp[p++];        // storing variable name of 1st register
+            x = temp[p++] - 48;   // storing value name of 1st register
+
+
+            s >> temp;  // temp[0] = '$'  
+            p=1;           
+              
+            b = temp[p++];        // storing variable name of 2nd register
+            y = temp[p++] - 48;   // storing value name of 2nd register
+
+            s >> temp; // This temp will be having our label 
+
+            if( PerformEqual(a,b,x,y) == false )
+                return wrong; // So that control just goes to next line
+            else
+                return temp;  // So that control flows through the mentioned label
+            
+        }
+        else
+            return wrong;
+    } 
+}
+
+
 string beqz_Check ( string sentence, string word )
 {
     int x,y;
@@ -951,7 +994,15 @@ int main()
     // Creating array of 4KB memory = 4 bytes x ( 1024 length )
     for (int i=0;i<1024;i++)
         Mem[i] = 2 * i;
-   
+    
+    Mem[0] = 3;
+    Mem[1] = 5;
+    Mem[2] = 1;
+    Mem[3] = 4;
+    Mem[4] = 2;
+    Mem[5] = 6;
+    Mem[6] = 8;
+    Mem[7] = 7;
 
     // Here we can clearly observe that this array holds fixed memory address in all cases
     // cout << Mem[0] << endl <<  &(Mem[0]) << endl << *(&(Mem[0])) << endl;
@@ -1031,6 +1082,16 @@ int main()
         {
             // # Similar to above Jump case
             k = search [bne_Label];   //jump_Index;
+
+            continue;
+        }
+
+        // Checking 'beq'
+        string  beq_Label =  beq_Check (arr[k], "beq");
+        if( arr[k]!= ""  &&  beq_Check (arr[k], "beq") != "fault" )
+        {
+            // # Similar to above Jump case
+            k = search [beq_Label];   //jump_Index;
 
             continue;
         }
