@@ -1,5 +1,6 @@
-# Simulator
 # CO PROJECT
+
+# PHASE 1 ( Printing Register and Memory Elements)
 
 This is a simple C++ file which supports assembly language written with following MIPS instructions (same syntax of those):
 
@@ -17,7 +18,7 @@ By default the code will display the contents of 20 Registers and 20 Memory valu
 BubbleSort file (having name -'assembly') is also attached to check its working condition (You can notice the sorted order in Memory array).
         
         
-TO AVOID ANY ERRORS(For our code) FOLLOW THESE CONDITIONS :
+TO AVOID ANY ERRORS (For our code) FOLLOW THESE CONDITIONS :
 
   -> Keep a space at the end of every singe line you use,
   -> You need to follow this format or syntax for all MIPS instructions:
@@ -31,4 +32,33 @@ TO AVOID ANY ERRORS(For our code) FOLLOW THESE CONDITIONS :
   
  As of now we haven't applied any GUI, single step execution....
  
- ********* Thats it SIR ********
+ 
+ 
+ #  PHASE 2 ( Adding PIPELINING - Printing Number of Cycles and Stalls )
+ 
+ Here I updated ony ( add , addi , sub , subi, li , lw , sw , j , bne ) these instructions ,so only use these in this phase.
+ In this phase for a given input file, output will give the same previous elements ( Memory and Register elements ). 
+ Along with that it will also give the total number of stalls and cycles it takes to perform those instructions of both forwarding and non forwaring cases seperately.
+ It will also tells us which instruction is taking how many cycles and stalls, stepwise seperately.
+ 
+ >>> EXCEPTIONS :
+
+    -> 1st line should definately have any instruction of add/addi/sub/subi/j/bne/li/lw/sw (cant be label)
+       just use " li $t0, 0 "  to avoid any information losses
+    -> To check only Register and Memory elements many instructions are available as mentioned in phase 1,
+       But to check stalls and cycles only use -> {add/addi/sub/subi/j/bne/li/lw/sw} these instructions in whatever way you want
+       ( so we cant check the BUBBLE SORT assembly as of now, as we used other instructions in it)
+    
+    -> Each line should end with space
+    -> Dont leave any line empty (You can just have empty line before any LABEL, for good looking)
+
+    -> Dont keep any label named "fault" ,its already reserved 
+    -> should follow good pattern or spacing in add ,addi,.....as mentioned in README phase1 (above)
+    -> If You feel you are not getting any output just save file again(any random comment) and run
+    
+ 
+ 
+ 
+ 
+ 
+ 
