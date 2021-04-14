@@ -1764,7 +1764,7 @@ int main()
                         {
                             if( Dependency(arr[k-2],arr[k]) )
                             {
-                                cycle+=3;
+                                cycle+=2;
                                 stall++;
                             }   
 
