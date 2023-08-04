@@ -1,5 +1,12 @@
 # CO PROJECT
 
+# Demo Video:
+
+
+https://github.com/K-Ravi-Chandra/Simulator/assets/73428137/4c822ad3-3fcc-4e96-ae7a-286871f6bb63
+
+
+
 # PHASE 1 ( Printing Register and Memory Elements)
 
 This is a simple C++ file which supports assembly language written with following MIPS instructions (same syntax of those):
